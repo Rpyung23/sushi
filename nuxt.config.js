@@ -24,7 +24,7 @@ export default {
       },
       { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/png", href: "/logo_sushi.png" }],
+    link: [{ rel: 'icon', type: 'image/png', href: 'logo_sushi.png' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -40,7 +40,6 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     "@nuxtjs/vuetify",
-    "@nuxtjs/ngrok",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -52,7 +51,7 @@ export default {
     "vue-sweetalert2/nuxt/no-css",
     '@nuxtjs/axios',
     "nuxt-webfontloader",
-    "cookie-universal-nuxt"
+    "cookie-universal-nuxt",
   ],
   webfontloader: {
     google: {

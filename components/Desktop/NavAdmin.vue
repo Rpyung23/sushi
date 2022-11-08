@@ -11,9 +11,9 @@
       app
     >
       <v-toolbar-title
-        @click="$router.push('/')"
+        @click="$router.push('/indexAdmin')"
         class="text-md-h5 font-weight-bold pointer" style="color:#E94560"
-        >FUKUSUKE</v-toolbar-title
+        >FUKUSUKE ADMINISTRADOR</v-toolbar-title
       >
       <v-spacer />
 
@@ -25,21 +25,8 @@
         <v-icon size="20">mdi-logout</v-icon>
       </v-btn>
 
-      
-      <v-badge
-        v-if="$store.state.cart.cart.length > 0"
-        overlap
-        :content="`${$store.state.cart.cart.length}`"
-      >
-        <v-btn nuxt to="/cart" icon>
-          <v-icon size="20">mdi-cart-outline</v-icon>
-        </v-btn>
-      </v-badge>
-      <v-btn v-else nuxt to="/cart" icon>
-        <v-icon size="20">mdi-cart-outline</v-icon>
-      </v-btn>
 
-      <v-btn nuxt to="/compras" v-if="isLogin" @click="logOut()" class="mr-md-2" icon>
+      <v-btn nuxt to="/ventasRealizadas" v-if="isLogin" @click="logOut()" class="mr-md-2" icon>
         <v-icon size="20">mdi-book-open</v-icon>
       </v-btn>
 
@@ -66,7 +53,7 @@ export default {
         this.$cookies.set("token",null)
         this.isLogin = false
         this.$nuxt.refresh()
-        this.$router.push("/");
+        this.$router.push("/admin");
       }
   },mounted() {
       if(this.$cookies.get("token") != null && this.$cookies.get("token") != "" &&
