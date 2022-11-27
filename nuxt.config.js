@@ -112,7 +112,7 @@ export default {
   build: {},
 
   env: {
-    baseUrl: process.env.baseUrl || 'http://localhost:3001',
+    baseUrl: process.env.baseUrl || 'http://localhost:3005',
   }
 
 };

@@ -418,14 +418,16 @@ export default {
         }
       )
 
+      console.log(datos.data.datos)
+
       if (
-        datos.data.datos == null ||
-        datos.data.datos == "" ||
+        datos.data.datos == null &&
+        datos.data.datos == "" &&
         datos.data.datos == undefined
       ) {
         this.$swal({
           toast: true,
-          text: "No se pudo crear la ceunta nueva : "+this.modelCrearNombre,
+          text: "No se pudo crear la cuenta nueva : "+this.modelCrearNombre,
           icon: "warning",
           timer: 3000,
           timerProgressBar: true,
@@ -453,8 +455,8 @@ export default {
       );
 
       if (
-        datos.data.jwt == null ||
-        datos.data.jwt == "" ||
+        datos.data.jwt == null &&
+        datos.data.jwt == "" &&
         datos.data.jwt == undefined
       ) {
         this.$swal({

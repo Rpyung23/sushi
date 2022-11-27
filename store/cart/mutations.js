@@ -1,14 +1,56 @@
 export default {
   LoadCart(state) {
     let cart = localStorage.getItem("myCart");
+
     if (cart) {
       state.cart = JSON.parse(cart);
     }
   },
   AddToCart(state, product) {
     //Check if item is in cart
-    let itemfound = state.cart.find((p) => p.product.id === product.id);
+    console.log(product)
+    let itemfound = false//state.cart.find((p) => p.product.id === product.id);
+    console.log(state.cart)
+
+    for(var i = 0;i<state.cart.length;i++)
+    {
+      console.log(state.cart[i].product._id + " == "+ product._id)
+      if(state.cart[i].product._id == product._id )
+      {
+        itemfound = true
+      }
+    }
+
+    if(itemfound){
+      this.$swal({
+        toast: true,
+        text: "Producto ya esta en su Carrito",
+        icon: "info",
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        position: "top-end",
+      });
+    }else{
+      state.cart.push({ product, quantity: 1 });
+      localStorage.setItem("myCart", JSON.stringify(state.cart));
+      this.$swal({
+        toast: true,
+        text: "Actualizando Carrito",
+        icon: "success",
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        position: "top-end",
+      });
+    }
+
+
+    /*console.log("itemfound : "+itemfound)
+    console.log(itemfound)
+    state.cart.push({ product, quantity: 1 });
     if (!itemfound) {
+      console.log("!itemfound")
       state.cart.push({ product, quantity: 1 });
     }
     if (itemfound) {
@@ -26,7 +68,7 @@ export default {
       timerProgressBar: true,
       showConfirmButton: false,
       position: "top-end",
-    });
+    });*/
   },
   DecreaseItemCount(state, index) {
     let item = state.cart[index];
@@ -46,8 +88,13 @@ export default {
       position: "top-end",
     });
   },
-  RemoveCartItem(state, index) {
+  RemoveCartItem(state, index) 
+  {
+    console.log(index)
     state.cart.splice(index, 1);
+    
+    localStorage.setItem("myCart",JSON.stringify(state.cart))
+
 
     this.$swal({
       toast: true,

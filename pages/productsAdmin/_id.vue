@@ -4,6 +4,7 @@
     <v-container v-if="product">
       <v-row justify="center">
         <v-col cols="11" md="7">
+
           <h2 class="text-center text-md-h4 font-weight-bold">
             {{ product.name }}
           </h2>
@@ -40,6 +41,14 @@
             {{ product.description }}
           </p>
         </v-col>
+        <v-btn
+        min-width="300"
+        min-height="45"
+        color="red"
+        @click="deleteProducto()"
+        style="color:white;"
+        >ELIMINAR</v-btn
+      >
       </v-row>
     </v-container>
     <br /><br />
@@ -54,6 +63,12 @@ import NavAdmin from "../../components/Desktop/NavAdmin.vue";
 export default {
   components:{
     ComponentNavAdmin: NavAdmin,
+  },
+  methods: {
+    async deleteProducto(){
+      await this.$axios.delete(process.env.baseUrl+"/products/"+this.$route.params.id)
+      this.$router.push("/indexAdmin");
+    }
   },
   async created() {
     let datos = await this.$axios.get(process.env.baseUrl+"/product/"+this.$route.params.id)

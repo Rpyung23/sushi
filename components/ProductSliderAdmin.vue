@@ -8,6 +8,7 @@
         width="300"
         class="el ma-2 mb-5 mr-5"
       >
+      
         <v-img :src="p.imagen" height="300">
           <template #placeholder>
             <v-row class="fill-height" justify="center" align="center">
@@ -20,6 +21,7 @@
             </v-row>
           </template>
         </v-img>
+
         <v-card-title class="text-md-body-1 font-weight-bold">{{
           p.name
         }}</v-card-title>
