@@ -112,6 +112,7 @@ export default {
     },
     async paymentCompleted(data)
     {
+      var auxCart = localStorage.getItem("myCart");
       console.log("COMPLETADO")
       console.log(data)
       if (data.state == "approved") {
@@ -123,6 +124,7 @@ export default {
             idPaypal:data.id,
             total: data.transactions[0].amount.total,
             token: this.$cookies.get("token"),
+            detalleCompra: auxCart
           }
         );
 
@@ -192,18 +194,17 @@ async paymentCancelled(data){
           token: this.$cookies.get("token"),
           amount: amount,
           items: item,
+          detalleCompra: datos
         };
 
         console.log(body);
 
-        var datos = await this.$axios.post(
+        var datos_ = await this.$axios.post(
           process.env.baseUrl + "/PagoPaypal",
           body
         );
 
-        console.log(datos.data);
-
-        if (datos.data.msm == "sale created") {
+        if (datos_.data.msm == "sale created") {
           localStorage.setItem("myCart", JSON.stringify([]));
 
           this.$swal({
@@ -219,7 +220,7 @@ async paymentCancelled(data){
           this.$nuxt.refresh();
           this.$router.push("/");
         } else {
-          alert(datos.data.msm);
+          alert(datos_.data.msm);
         }
       } else {
         alert("SIN DATOS STORE");

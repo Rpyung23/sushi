@@ -3,7 +3,7 @@ export default function ({ store }, inject) {
 
   inject("formatMoney", (money) => {
     return new Intl.NumberFormat("en-US", {
-      currency: "USD",
+      currency: "CLP",
       style: "currency",
     }).format(money);
   });
